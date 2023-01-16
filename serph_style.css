@@ -1,5 +1,4 @@
 :root {
-
     background-color: wheat;
     justify-content: center;
 }
@@ -11,6 +10,11 @@
     font-family: "Poppins", sans-serif;
 }
 
+.card {
+    background-color: blanchedalmond;
+    text-align: center;
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -18,7 +22,7 @@
     background-color: rgba(213, 213, 213, 0.669);
     backdrop-filter: blur(5px);
     width: 100%;
-    border-radius: 5px      ;
+    border-radius: 5px;
 }
 
 h1 {
