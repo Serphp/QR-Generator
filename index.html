@@ -30,6 +30,7 @@
         <option value="100" selected>100x100</option>
         <option value="200">200x200</option>
         <option value="300">300x300</option>
+        <option value="500">500x500</option>
     </select>
     <input type="color" id="ColorB" class="color-inp" />
     <input type="color" id="FColor" class="color-inp" />
@@ -42,74 +43,5 @@
     <div class="showqr"></div>
 </div>
 
-<script>
-    const showqr = document.querySelector(".showqr");
-    const uInput = document.getElementById("uInput");
-    const sButton = document.getElementById("submit");
-    const dButton = document.getElementById("download");
-    const rOptions = document.querySelector(".rOptions");
-    const ColorB = document.getElementById("ColorB");
-    const FColor = document.getElementById("FColor");
-    let QR_code;
-    let rSelect, BGColorChoice, FGColorChoice;
-    //set size
-    rOptions.addEventListener("change", () => {
-    rSelect = rOptions.value;
-    });
-    //set background color
-    ColorB.addEventListener("input", () => {
-    BGColorChoice = ColorB.value;
-    });
-    //set foreground color
-    FColor.addEventListener("input", () => {
-    FGColorChoice = FColor.value;
-    });
-    //format input
-    const inputFormatter = (value) => {
-    value = value.replace(/[^a-z0-9A-Z]+/g, "");
-    return value;
-    };
-    sButton.addEventListener("click", async () => {
-    showqr.innerHTML = "";
-    //QR code generation
-    QR_code = await new QRCode(showqr, {
-        text: uInput.value,
-        width: rSelect,
-        height: rSelect,
-        colorDark: FGColorChoice,
-        colorLight: BGColorChoice,
-    });
-    //set url for download
-    const src = showqr.firstChild.toDataURL("image/png");
-    dButton.href = src;
-    let userValue = uInput.value;
-    try {
-        userValue = new URL(userValue).hostname;
-    } catch (_) {}
-    userValue = inputFormatter(userValue);
-    dButton.download = `${userValue}QR`;
-    dButton.classList.remove("hide");
-    });
-    uInput.addEventListener("input", () => {
-    //for blank input hide download button
-    if (uInput.value.trim().length < 1) {
-        sButton.disabled = true;
-        dButton.href = "";
-        dButton.classList.add("hide");
-    } else {
-        sButton.disabled = false;
-    }
-    });
-    window.onload = () => {
-    showqr.innerHTML = "";
-    rSelect = 100;
-    rOptions.value = 100;
-    uInput.value = "";
-    ColorB.value = BGColorChoice = "#FFFFFF";
-    FColor.value = FGColorChoice = "#000000";
-    dButton.classList.add("hide");
-    sButton.disabled = true;
-    };
-</script>
 </body>
 </html>
