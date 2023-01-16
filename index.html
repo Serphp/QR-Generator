@@ -1,47 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script src="/serph.js"></script>
-    <link href="./serph_style.css" rel="stylesheet" type="text/css">
-    <!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serphp - QR Code Generator</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link href="./serph_style.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google Fonts -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+    rel="stylesheet"
+/>
+<script
+    src="./node_modules/qrcodejs/qrcode.min.js"
+    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+></script>
+<title>QR Code Generator</title>
+<style>
+
+</style>
 </head>
+
 <body>
-    <main>
-        <h1>QR CODE GENERATOR</h1>
-
-        <div class="card">
-            <!-- START CONTAIN -->
-            <div class="containerqr">
-            <input type="text" id="textinput" placeholder="Texto or URL" />
-            <select class="sizeqr">
-                <option value="100" selected>100x100</option>
-                <option value="200">200x200</option>
-                <option value="300">300x300</option>
-                <option value="300">500x500</option>
-            </select>
-            <div class="">
-            
-            <article>
-            <input type="color" id="BGColor" class="" />
-            <input type="color" id="FGColor" class="" />
-            </article>
-
-        
-            <div class="contain">
-                <button id="Submit"> Generate </button>
-                <a href="#" id="Download"> Download </a>
-            </div>
+<div class="wrapper">
+    <input type="text" id="uInput" placeholder="Enter some text or URL" />
+    <div class="options">
+    <select class="rOptions">
+        <option value="100" selected>100x100</option>
+        <option value="200">200x200</option>
+        <option value="300">300x300</option>
+    </select>
+    <input type="color" id="ColorB" class="color-inp" />
+    <input type="color" id="FColor" class="color-inp" />
+    </div>
+    <div class="box">
+    <button id="submit" disabled>Generate</button>
+    <a href="#" id="download">Download</a>
+    </div>
     
-            </div>
-        </div>
-            <!-- END CONTAIN -->
-        </div>
+    <div class="showqr"></div>
+</div>
 
-
-    </main>
+<script>
+    const showqr = document.querySelector(".showqr");
+    const uInput = document.getElementById("uInput");
+    const sButton = document.getElementById("submit");
+    const dButton = document.getElementById("download");
+    const rOptions = document.querySelector(".rOptions");
+    const ColorB = document.getElementById("ColorB");
+    const FColor = document.getElementById("FColor");
+    let QR_code;
+    let rSelect, BGColorChoice, FGColorChoice;
+    //set size
+    rOptions.addEventListener("change", () => {
+    rSelect = rOptions.value;
+    });
+    //set background color
+    ColorB.addEventListener("input", () => {
+    BGColorChoice = ColorB.value;
+    });
+    //set foreground color
+    FColor.addEventListener("input", () => {
+    FGColorChoice = FColor.value;
+    });
+    //format input
+    const inputFormatter = (value) => {
+    value = value.replace(/[^a-z0-9A-Z]+/g, "");
+    return value;
+    };
+    sButton.addEventListener("click", async () => {
+    showqr.innerHTML = "";
+    //QR code generation
+    QR_code = await new QRCode(showqr, {
+        text: uInput.value,
+        width: rSelect,
+        height: rSelect,
+        colorDark: FGColorChoice,
+        colorLight: BGColorChoice,
+    });
+    //set url for download
+    const src = showqr.firstChild.toDataURL("image/png");
+    dButton.href = src;
+    let userValue = uInput.value;
+    try {
+        userValue = new URL(userValue).hostname;
+    } catch (_) {}
+    userValue = inputFormatter(userValue);
+    dButton.download = `${userValue}QR`;
+    dButton.classList.remove("hide");
+    });
+    uInput.addEventListener("input", () => {
+    //for blank input hide download button
+    if (uInput.value.trim().length < 1) {
+        sButton.disabled = true;
+        dButton.href = "";
+        dButton.classList.add("hide");
+    } else {
+        sButton.disabled = false;
+    }
+    });
+    window.onload = () => {
+    showqr.innerHTML = "";
+    rSelect = 100;
+    rOptions.value = 100;
+    uInput.value = "";
+    ColorB.value = BGColorChoice = "#FFFFFF";
+    FColor.value = FGColorChoice = "#000000";
+    dButton.classList.add("hide");
+    sButton.disabled = true;
+    };
+</script>
 </body>
 </html>
