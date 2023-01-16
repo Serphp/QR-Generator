@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="./serph_style.css" rel="stylesheet" type="text/css">
+    <!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serphp - QR Code Generator</title>
+</head>
+<body>
+    <main>
+        <h1>QR CODE GENERATOR</h1>
+
+        <div class="card">
+            <div class="container">
+                <input type="text" id="userInput" placeholder="Enter some text or URL" />
+                <select class="sizeOptions">
+                    <option value="100" selected>100x100</option>
+                    <option value="200">200x200</option>
+                    <option value="300">300x300</option>
+                </select>
+                <input type="color" id="BGColor" class="color-inp" />
+                <input type="color" id="FGColor" class="color-inp" />
+                <div class="contain">
+                    <button id="submit" disabled> Generate </button>
+                    <a href="#" id="download"> Download </a>
+                </div>
+    
+            </div>
+        </div>
+
+
+    </main>
+</body>
+</html>
