@@ -1,0 +1,22 @@
+{
+  "name": "qrgenerator",
+  "version": "1.0.0",
+  "description": "Serphp_QR",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Serphp/QR-Generator.git"
+  },
+  "author": "Serphp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Serphp/QR-Generator/issues"
+  },
+  "homepage": "https://github.com/Serphp/QR-Generator#readme",
+  "dependencies": {
+    "qrcodejs": "^1.0.0"
+  }
+}
