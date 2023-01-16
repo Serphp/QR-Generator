@@ -25,6 +25,10 @@
     border-radius: 5px;
 }
 
+.contain {
+    display: inline-block;
+}
+
 h1 {
     text-align: center;
     font-size: 3em;
