@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="/serph.js"></script>
     <link href="./serph_style.css" rel="stylesheet" type="text/css">
     <!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +15,9 @@
 
         <div class="card">
             <!-- START CONTAIN -->
-            <input type="text" id="userInput" placeholder="Texto or URL" />
-
-            <select class="">
+            <div class="containerqr">
+            <input type="text" id="textinput" placeholder="Texto or URL" />
+            <select class="sizeqr">
                 <option value="100" selected>100x100</option>
                 <option value="200">200x200</option>
                 <option value="300">300x300</option>
@@ -31,12 +32,12 @@
 
         
             <div class="contain">
-                <button id="submit"> Generate </button>
-                <a href="#" id="download"> Download </a>
+                <button id="Submit"> Generate </button>
+                <a href="#" id="Download"> Download </a>
             </div>
     
             </div>
-
+        </div>
             <!-- END CONTAIN -->
         </div>
 
