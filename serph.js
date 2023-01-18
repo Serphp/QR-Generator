@@ -1,42 +1,42 @@
-//Manipulando variables
-const containerqr = document.querySelector(".containerqr")
-const textinput = document.getElementById("textinput");
-const BSubmit = document.getElementById("Submit");
-const BDownload = document.getElementById("Download");
-const sizeqr = document.querySelector(".sizeqr")
-//
-const BGColor = document.getElementById("BGColor");
-const FGColor = document.getElementById("FGColor");
+const showqr = document.querySelector(".showqr");
+const uInput = document.getElementById("uInput");
+const sButton = document.getElementById("submit");
+const dButton = document.getElementById("download");
+const rOptions = document.querySelector(".rOptions");
+const ColorB = document.getElementById("ColorB");
+const FColor = document.getElementById("FColor");
 
-let QRgenerator;
-let SizeOption, BGcolorSelect, FGColorSelect;
+let Serphp_QR;
+let rSelect, BGColorChoice, FGColorChoice;
 
-//Listeners
-sizeqr.addEventListener("", () => {
-    SizeOption = sizeqr.value;
-})
+//set size
+rOptions.addEventListener("change", () => {
+    rSelect = rOptions.value;
+});
+//set background color
+ColorB.addEventListener("input", () => {
+    BGColorChoice = ColorB.value;
+});
+//set foreground color
+FColor.addEventListener("input", () => {
+    FGColorChoice = FColor.value;
+});
 
-BGColor.addEventListener("input", () => {
-    BGcolorSelect = BGColor.value;
-})
-FGColor.addEventListener("input", () => {
-    FGColorSelect = FGColor.value;
-})
+//Enable & disable button for generate QRCode
+uInput.addEventListener("input", () => {
+    sButton.disabled = uInput.value.trim().length < 1 ? true : false;
+    dButton.href = uInput.value.trim().length < 1 ? "" : dButton.href;
+    dButton.classList.toggle("hide", uInput.value.trim().length < 1);
+});
 
-function hola(params) {
-    console.log('Connect js.');
-}
 
-hola();
-
-//
 window.onload = () => {
-    containerqr.innerHTML = "";
-    SizeOption = 100;
-    sizeqr.value = 100;
-    BGColor.value = BGcolorSelect = "#FFFFFF";
-    FGColor.value = FGColorSelect = "#000000";
-    textinput.value = "";
-    BDownload.classList.add("")
-    BSubmit.disable = true;
-}
+    showqr.innerHTML = "";
+    rSelect = 100;
+    rOptions.value = 100;
+    uInput.value = "";
+    ColorB.value = BGColorChoice = "#FFFFFF";
+    FColor.value = FGColorChoice = "#000000";
+    dButton.classList.add("hide");
+    sButton.disabled = true;
+};
