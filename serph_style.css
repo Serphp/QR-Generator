@@ -45,7 +45,7 @@
 
 
 .showqr{
-    margin: 10em 0 2em 0;
+    margin: 6em 0 2em 0;
     opacity: 0.5;
     display: flex;
     justify-content: center;
@@ -84,12 +84,6 @@
     
 }
 
-.search {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0 10px 0;
-}
-
 .boxfirst, .options {
     display: flex;
     flex-direction: row;
@@ -114,23 +108,27 @@ select {
     border: none;
 }
 
-button {
+button, a {
     background-color: transparent;
     border-color: rgb(0, 0, 0);
     color: black;
     padding: 10px;
-    font-size: 1.5em;
-    animation: border-color 5s ease;
+    font-size: 1.3em;
+    animation: all 5s linear infinite;
+    
 }
 
+a:hover{
+    animation-delay: 2s ;
+    border-color: red;
+    color: red;
+}
 button:hover {
     border-color: aqua;
 }
 
-
 h1 {
-    text-align: center;
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 800;
     font-family: monospace;
 }
@@ -154,11 +152,18 @@ h1 {
     font-weight: 800;
 }
 
-input {
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     border-radius: 5px;
-    font-size: 18px;
 }
-input:hover {
+
+.search > input {
+    padding: 20px;
+    margin: 10px 0 10px 0;
+    font-size: 20px;
     /* background-color: black; */
 }
 
